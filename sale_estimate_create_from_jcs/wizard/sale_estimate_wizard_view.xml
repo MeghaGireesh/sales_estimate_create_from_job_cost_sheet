@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="sale_estimation_wizard_temp" model="ir.ui.view">
+        <field name="name">sale.estimation.wizard.form</field>
+        <field name="model">job.estimation.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Test">
+                <p>This wizard will help you to create job estimation for the current job cost sheet</p>
+                <group class="oe_title">
+                    <field name="customer"/>
+                </group>
+                <group >
+                    <field name="price_list"/>
+                </group>
+                <group>
+                    <field name="related_job_cost_sheet"/>
+                </group>
+                <footer>
+                    <button string="Create Estimate" class="btn-primary" type="object" name="create_estimate"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="sale_estimation_wizard_action"
+                model="ir.actions.act_window">
+        <field name="name">Create Sale Estimate</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">job.estimation.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="context">{'default_related_job_cost_sheet': active_id}</field>
+        <field name="view_id" ref="sale_estimation_wizard_temp"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="job_cost_inherit_form1_view" model="ir.ui.view">
+        <field name="name">job.cost.sheet.inherit</field>
+        <field name="inherit_id"
+               ref="project_job_costing.job_cost_sheet_project_form_view"/>
+        <field name="model">job.cost.sheet</field>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='cancel_btn']" position="before">
+                <button name="%(sale_estimation_wizard_action)d"
+                        class="btn-primary" string="Create Sale estimate"
+                        type="action"/>
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="view_sale_estimates" class="oe_stat_button"
+                        type="object" icon="fa-book">Estimate
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="estimate_inherit_form1_view" model="ir.ui.view">
+        <field name="name">estimate.job.sheet.inherit</field>
+        <field name="inherit_id"
+               ref="estimation_for_jobs.action_job_estimation_form"/>
+        <field name="model">estimation.jobs</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='analytic_account']" position="after">
+                <field name="job_cost_sheet"/>
+            </xpath>
+            <xpath expr="//group[@id='main_group']" position="before">
+                <div class="oe_button_box" name="button_box">
+                    <button name="smart_job_cost_sheet" class="oe_stat_button"
+                            type="object" icon="fa-book">Job cost sheets
+                    </button>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
